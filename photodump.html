@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photodump 33.FOTOGRAF — galerie zdjęć z meczów i wydarzeń.">
+  <meta name="theme-color" content="#111111">
+  <title>Photodump — 33.FOTOGRAF</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+  .dump-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.dump-category {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  display: flex;
+  align-items: end;
+  padding: 25px;
+  background: #222;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.dump-category img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s;
+  filter: brightness(.55);
+}
+
+.dump-category:hover img {
+  transform: scale(1.06);
+}
+
+.dump-category-content {
+  position: relative;
+  z-index: 1;
+}
+
+.dump-category small {
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: #ccc;
+}
+
+.dump-category h3 {
+  font-size: clamp(25px, 3vw, 38px);
+  margin: 12px 0 5px;
+  letter-spacing: -.06em;
+}
+
+.dump-category p {
+  font-size: 11px;
+  color: #ddd;
+}
+
+@media (max-width: 760px) {
+  .dump-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .dump-category {
+    min-height: 250px;
+  }
+}
+    .dump-header {
+      padding: 150px 0 65px;
+      background: #151515;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .dump-back {
+      display: inline-block;
+      color: #aaa79f;
+      font-size: 10px;
+      letter-spacing: .15em;
+      margin-bottom: 45px;
+    }
+
+    .dump-title {
+      font-size: clamp(55px, 10vw, 115px);
+      line-height: .85;
+      letter-spacing: -.09em;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .dump-description {
+      color: #a5a39e;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 420px;
+      margin-top: 25px;
+    }
+
+    .dump-content {
+      padding: 75px 0 120px;
+    }
+
+    .dump-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .dump-folder {
+      display: block;
+      background: #191919;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.09);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .dump-folder:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .dump-cover {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #292929;
+    }
+
+    .dump-cover img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(.75);
+      transition: transform .5s;
+    }
+
+    .dump-folder:hover img {
+      transform: scale(1.04);
+    }
+
+    .dump-info {
+      padding: 20px;
+    }
+
+    .dump-info small {
+      color: #96938d;
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .dump-info h2 {
+      font-size: 23px;
+      margin: 12px 0 8px;
+      letter-spacing: -.05em;
+    }
+
+    .dump-info p {
+      color: #898780;
+      font-size: 11px;
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .dump-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .dump-info {
+        padding: 13px;
+      }
+
+      .dump-info h2 {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .dump-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html">33<span>.</span>FOTOGRAF</a>
+
+    <nav class="nav-links">
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="photodump.html">Photodump</a>
+      <a href="index.html#about">O mnie</a>
+      <a href="index.html#contact">Kontakt</a>
+    </nav>
+
+    <a class="nav-ig"
+       href="https://www.instagram.com/33.fotograf/"
+       target="_blank" rel="noreferrer">Instagram ↗</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="dump-header">
+    <div class="container">
+      <a href="index.html" class="dump-back">← POWRÓT NA STRONĘ GŁÓWNĄ</a>
+
+      <div class="section-kicker">33.FOTOGRAF — ARCHIVE</div>
+
+      <h1 class="dump-title">
+        PHOTO<br>DUMP<span style="color:#aaa79f">.</span>
+      </h1>
+
+      <p class="dump-description">
+        Galerie zdjęć z meczów, turniejów i wydarzeń.
+        Każdy folder to osobna historia zatrzymana w kadrach.
+      </p>
+    </div>
+  </section>
+
+  <section class="dump-content">
+    <div class="container">
+
+      <div class="section-top">
+        <div>
+          <div class="section-kicker">01 — Match archive</div>
+          <h2>FOLDERY.</h2>
+        </div>
+
+        <p class="section-desc">
+          Wybierz wydarzenie, aby zobaczyć wszystkie zdjęcia z danego meczu.
+        </p>
+      </div>
+
+     <div class="dump-categories">
+
+  <a href="tajfun.html" class="dump-category">
+    <img src="images/pilka1.jpg" alt="Tajfun">
+    <div class="dump-category-content">
+      <small>01 — FOOTBALL ARCHIVE</small>
+      <h3>TAJFUN.</h3>
+      <p>Mecze · Zawodnicy · Kulisy</p>
+    </div>
+  </a>
+
+  <a href="#siatkowka" class="dump-category">
+    <img src="images/siatkowka1.jpg" alt="Siatkówka">
+    <div class="dump-category-content">
+      <small>02 — VOLLEYBALL ARCHIVE</small>
+      <h3>SIATKÓWKA.</h3>
+      <p>Mecze · Turnieje · Treningi</p>
+    </div>
+  </a>
+
+  <a href="#poza-boiskiem" class="dump-category">
+    <img src="images/koncert.jpg" alt="Wydarzenia">
+    <div class="dump-category-content">
+      <small>03 — EVENTS & LIFESTYLE</small>
+      <h3>POZA BOISKIEM.</h3>
+      <p>Koncerty · Sesje · Reportaże</p>
+    </div>
+  </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 33.FOTOGRAF — ALL RIGHTS RESERVED</span>
+    <span>LUBLIN, POLAND ·
+      <a href="https://www.instagram.com/33.fotograf/"
+         target="_blank" rel="noreferrer">@33.FOTOGRAF</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

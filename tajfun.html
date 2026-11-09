@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Archiwum zdjęć LKS Tajfun Ostrów Lubelski — 33.FOTOGRAF.">
+  <meta name="theme-color" content="#111111">
+  <title>TAJFUN — 33.FOTOGRAF</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .archive-header {
+      padding: 150px 0 65px;
+      background: #151515;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .archive-back {
+      display: inline-block;
+      color: #aaa79f;
+      font-size: 10px;
+      letter-spacing: .15em;
+      margin-bottom: 45px;
+    }
+
+    .archive-title {
+      font-size: clamp(55px, 10vw, 115px);
+      line-height: .85;
+      letter-spacing: -.09em;
+      margin: 0;
+    }
+
+    .archive-description {
+      color: #a5a39e;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 420px;
+      margin-top: 25px;
+    }
+
+    .archive-content {
+      padding: 75px 0 120px;
+    }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .match-folder {
+      display: block;
+      background: #191919;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.09);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .match-folder:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .match-cover {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #292929;
+    }
+
+    .match-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s;
+    }
+
+    .match-folder:hover img {
+      transform: scale(1.05);
+    }
+
+    .match-info {
+      padding: 20px;
+    }
+
+    .match-info small {
+      color: #96938d;
+      font-size: 9px;
+      letter-spacing: .15em;
+    }
+
+    .match-info h2 {
+      font-size: 21px;
+      margin: 12px 0 8px;
+    }
+
+    .match-info p {
+      color: #898780;
+      font-size: 11px;
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .match-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .match-info {
+        padding: 13px;
+      }
+
+      .match-info h2 {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .match-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html">33<span>.</span>FOTOGRAF</a>
+
+    <nav class="nav-links">
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="photodump.html">Photodump</a>
+      <a href="index.html#about">O mnie</a>
+      <a href="index.html#contact">Kontakt</a>
+    </nav>
+
+    <a class="nav-ig"
+       href="https://www.instagram.com/33.fotograf/"
+       target="_blank" rel="noreferrer">Instagram ↗</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="archive-header">
+    <div class="container">
+      <a href="photodump.html" class="archive-back">
+        ← POWRÓT DO PHOTODUMP
+      </a>
+
+      <div class="section-kicker">33.FOTOGRAF — FOOTBALL ARCHIVE</div>
+
+      <h1 class="archive-title">
+        TAJFUN<span style="color:#aaa79f">.</span>
+      </h1>
+
+      <p class="archive-description">
+        Archiwum fotograficzne LKS Tajfun Ostrów Lubelski.
+        Mecze, zawodnicy i kulisy piłkarskich wydarzeń.
+      </p>
+    </div>
+  </section>
+
+  <section class="archive-content">
+  <div class="container">
+
+    <div class="section-top">
+      <div>
+        <div class="section-kicker">01 — Football archive</div>
+        <h2>MECZE.</h2>
+      </div>
+
+      <p class="section-desc">
+        Wybierz spotkanie, aby przejść do galerii zdjęć.
+      </p>
+    </div>
+
+    <div class="match-grid" id="matchGrid">
+      <p style="color:#aaa;">Ładowanie albumów...</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 33.FOTOGRAF — ALL RIGHTS RESERVED</span>
+    <span>LUBLIN, POLAND ·
+      <a href="https://www.instagram.com/33.fotograf/"
+         target="_blank" rel="noreferrer">@33.FOTOGRAF</a>
+    </span>
+  </div>
+</footer>
+<script>
+async function loadAlbums() {
+  const grid = document.getElementById("matchGrid");
+
+  try {
+    const response = await fetch("albums.json");
+
+    if (!response.ok) {
+      throw new Error("Nie udało się pobrać albumów.");
+    }
+
+    const albums = await response.json();
+
+    grid.innerHTML = "";
+
+    albums.forEach(album => {
+      const link = document.createElement("a");
+      link.className = "match-folder";
+      link.href = "album.html?folder=" + encodeURIComponent(album.folder);
+
+      const cover = document.createElement("div");
+      cover.className = "match-cover";
+
+      const img = document.createElement("img");
+      img.src = album.cover;
+      img.alt = album.title;
+      img.loading = "lazy";
+
+      cover.appendChild(img);
+
+      const info = document.createElement("div");
+      info.className = "match-info";
+
+      const label = document.createElement("small");
+      label.textContent = "LKS TAJFUN · GALERIA";
+
+      const title = document.createElement("h2");
+      title.textContent = album.title;
+
+      const count = document.createElement("p");
+      count.textContent = "Galeria zdjęć · " + album.count + " zdjęć";
+
+      info.append(label, title, count);
+      link.append(cover, info);
+      grid.appendChild(link);
+    });
+
+  } catch (error) {
+    grid.textContent = "Nie udało się załadować albumów. Sprawdź plik albums.json.";
+    console.error(error);
+  }
+}
+
+loadAlbums();
+</script>
+</body>
+</html>
